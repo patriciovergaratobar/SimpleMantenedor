@@ -1,0 +1,26 @@
+
+    <material-dialog headered class="headered-dialog" >
+      <div header class="headerModal">
+            <h2>Crear Usuario</h2>
+      </div>
+      <p>
+        Ingrese la información en  el formulario.
+      </p>
+
+
+        Rut: <material-input label="Rut" [(ngModel)]="rutNuevo" ></material-input><br>
+        Nombre: <material-input label="Nombre" [(ngModel)]="nombreNuevo" ></material-input><br>
+        Correo: <material-input label="Correo" [(ngModel)]="correoNuevo" ></material-input><br>
+        Clave: <material-input label="Clave" [(ngModel)]="claveNuevo" ></material-input><br>
+        FechaNacimiento: <material-input label="FechaNacimiento" [(ngModel)]="fechaNuevo"></material-input><br>
+
+      <div footer>
+        <material-button autoFocus clear-size (trigger)="showCrearForm = false">
+          Cerrar
+        </material-button>
+        <material-button autoFocus clear-size (trigger)="showCrearForm = false">
+            Crear
+        </material-button>
+      </div>
+  
+    </material-dialog>

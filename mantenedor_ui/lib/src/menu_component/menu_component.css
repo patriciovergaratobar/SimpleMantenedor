@@ -1,0 +1,33 @@
+a:link, a:visited { 
+ 
+    text-decoration: blink;
+    color: #fffffe;
+}
+
+a:link:active, a:visited:active { 
+    color: (internal value);
+}
+
+.material-header {
+    background-color: #072dff;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    height: 64px;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+    z-index: 1;
+    background-color: #03a9f4;
+    padding: 0;
+    margin-bottom: 40px;
+    box-shadow: 0 3px 3px rgba(0,0,0,.29);
+    z-index: 1170;
+}

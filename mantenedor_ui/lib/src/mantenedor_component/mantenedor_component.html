@@ -1,0 +1,74 @@
+
+
+<div  class="contenido-main">
+    <h1>Mantenedor de Usuarios</h1>
+
+    <material-button raised class="red" (trigger)="abrirCrearUsuario()" [disabled]="showCrearForm">
+        <material-icon icon="add"></material-icon>
+        Crear Usuario
+    </material-button>
+
+    <material-input type="search" label="Buscar..."></material-input>
+
+    
+
+    <modal [visible]="showCrearForm">
+        <!--crear-usuario-component></crear-usuario-component-->
+        <material-dialog headered class="headered-dialog" >
+            <div header class="headerModal">
+                  <h2>Crear Usuario</h2>
+            </div>
+            <p>
+              Ingrese la información en  el formulario.
+            </p>
+      
+      
+            Rut: <material-input label="Rut" [(ngModel)]="rutNuevo" ></material-input><br>
+            Nombre: <material-input label="Nombre" [(ngModel)]="nombreNuevo" ></material-input><br>
+            Correo: <material-input label="Correo" [(ngModel)]="correoNuevo" ></material-input><br>
+            Clave: <material-input label="Clave" [(ngModel)]="claveNuevo" ></material-input><br>
+            FechaNacimiento: <material-input label="FechaNacimiento" [(ngModel)]="fechaNuevo"></material-input><br>
+      
+            <div footer>
+              <material-button autoFocus clear-size (trigger)="showCrearForm = false">
+                Cerrar
+              </material-button>
+              <material-button autoFocus clear-size (trigger)="crearUsuario()">
+                  Crear
+              </material-button>
+            </div>
+        
+          </material-dialog>
+    </modal>
+
+    <table>
+            <thead>
+            <tr>
+                <th>RUT</th>
+                <th>NOMBRE</th>
+                <th>CORREO</th>
+                <th>FECHANACIMIENTO</th>
+                <th>OPCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let usuario of lista">
+                <td data-column="RUT" >{{ usuario.rut }}</td>
+                <td data-column="NOMBRE">{{ usuario.nombre }}</td>
+                <td data-column="CORREO" >{{ usuario.correo }}</td>
+                <td data-column="FECHANACIMIENTO" >{{ usuario.fechaNacimiento }}</td>
+                <td data-column="OPCIONES" >
+                    <material-button (trigger)="abrirEditarUsuario()">
+                        <material-icon icon="edit"></material-icon>
+                    </material-button>
+
+                    <material-button (trigger)="abrirEliminarUsuario()">
+                        <material-icon icon="delete"></material-icon>
+                    </material-button>
+                </td>
+            </tr>
+            </tbody>
+    </table>
+
+
+</div>
