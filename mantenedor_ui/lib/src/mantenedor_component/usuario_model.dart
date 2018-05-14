@@ -16,7 +16,7 @@ class UsuarioModel {
   Map toJson() => {'usuarioId': usuarioId, 'rut': rut, 'nombre': nombre, 'correo': correo, 'clave': clave, 'fechaNacimiento': fechaNacimiento};
 
   @override
-  String toString() => '$rut: $nombre';
+  String toString() => 'usuarioId: $usuarioId, rut: $rut, nombre: $nombre, correo: $correo, clave: $clave, fechaNacimiento: $fechaNacimiento';
 }
 
 int _toInt(id) => id is int ? id : int.parse(id);

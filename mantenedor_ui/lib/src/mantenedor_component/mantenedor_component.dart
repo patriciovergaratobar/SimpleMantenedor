@@ -40,16 +40,20 @@ class MantenedorComponent implements OnInit  {
 
   final MantenedorService servicios;
   //final CrearUsuarioFormComponent crearUsuarioFormComponent;
-  UsuarioModel crearUsuarioModel;
+  //Crear usuario
   String rutNuevo;
   String nombreNuevo;
   String correoNuevo;
   String claveNuevo;
   String fechaNuevo;
 
-  bool showCrearForm = false;
+  //Gestionar Usuario
+  UsuarioModel gestionUsuarioModel = new UsuarioModel(0, '', '', '', '', '');
 
-  
+  bool showCrearForm = false;
+  bool showEditForm = false;
+  bool showDeleteForm = false;
+
   List<UsuarioModel> lista;
 
   MantenedorComponent(this.servicios);
@@ -79,20 +83,56 @@ class MantenedorComponent implements OnInit  {
   }
 
   crearUsuario() async {
+  
     UsuarioModel usuarioNuevo = new UsuarioModel(0, rutNuevo, nombreNuevo, correoNuevo, claveNuevo, fechaNuevo);
     print(usuarioNuevo);
     bool resultado = await servicios.crear(usuarioNuevo);
 
     print(resultado);
     showCrearForm=false;
+
+    _getList();
   }
 
-  abrirEditarUsuario() {
+  abrirEditarUsuario(UsuarioModel usuario) {
+
+    print('Editar usuario');
+    print(usuario);
+    gestionUsuarioModel = usuario;
+    showEditForm = true;
 
   }
 
-  abrirEliminarUsuario() {
+  editarUsuario() async {
+  
+    
+    print(gestionUsuarioModel);
+    bool resultado = await servicios.actualizar(gestionUsuarioModel);
 
+    print(resultado);
+    showEditForm=false;
+
+    _getList();
+  }
+
+  abrirEliminarUsuario(UsuarioModel usuario) {
+
+    print('Eliminar usuario');
+    print(usuario);
+    gestionUsuarioModel = usuario;
+    showDeleteForm = true;
+
+  }
+
+  eliminarUsuario() async {
+
+    print(gestionUsuarioModel);
+    bool resultado = await servicios.eliminar(gestionUsuarioModel);
+
+    print(resultado);
+    showDeleteForm = false;
+
+    _getList();
   }
 
 }

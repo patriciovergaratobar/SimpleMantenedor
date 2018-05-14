@@ -21,14 +21,11 @@
             <p>
               Ingrese la información en  el formulario.
             </p>
-      
-      
             Rut: <material-input label="Rut" [(ngModel)]="rutNuevo" ></material-input><br>
             Nombre: <material-input label="Nombre" [(ngModel)]="nombreNuevo" ></material-input><br>
             Correo: <material-input label="Correo" [(ngModel)]="correoNuevo" ></material-input><br>
             Clave: <material-input label="Clave" [(ngModel)]="claveNuevo" ></material-input><br>
             FechaNacimiento: <material-input label="FechaNacimiento" [(ngModel)]="fechaNuevo"></material-input><br>
-      
             <div footer>
               <material-button autoFocus clear-size (trigger)="showCrearForm = false">
                 Cerrar
@@ -37,7 +34,51 @@
                   Crear
               </material-button>
             </div>
-        
+          </material-dialog>
+    </modal>
+
+    <modal [visible]="showEditForm">
+        <!--crear-usuario-component></crear-usuario-component-->
+        <material-dialog headered class="headered-dialog" >
+            <div header class="headerModal">
+                  <h2>Editar Usuario</h2>
+            </div>
+            <p>
+              Edita la información en  el formulario.
+            </p>
+            Rut: <material-input label="Rut" [(ngModel)]="gestionUsuarioModel.rut"  ></material-input><br>
+            Nombre: <material-input label="Nombre" [(ngModel)]="gestionUsuarioModel.nombre"  ></material-input><br>
+            Correo: <material-input label="Correo" [(ngModel)]="gestionUsuarioModel.correo" ></material-input><br>
+            Clave: <material-input label="Clave" [(ngModel)]="gestionUsuarioModel.clave" ></material-input><br>
+            FechaNacimiento: <!--material-input label="FechaNacimiento" [(ngModel)]="gestionUsuarioModel.fechaNacimiento"></material-input--><br>
+            <div footer>
+              <material-button autoFocus clear-size (trigger)="showEditForm = false">
+                    Cerrar
+              </material-button>
+              <material-button autoFocus clear-size (trigger)="editarUsuario()">
+                  Guardar
+              </material-button>
+            </div>
+          </material-dialog>
+    </modal>
+
+    <modal [visible]="showDeleteForm">
+        <!--crear-usuario-component></crear-usuario-component-->
+        <material-dialog headered class="headered-dialog" >
+            <div header class="headerModal">
+                  <h2>Eliminar Usuario</h2>
+            </div>
+            <p>
+              ¿Quiere eliminar el usuario?
+            </p>
+            <div footer>
+              <material-button autoFocus clear-size (trigger)="showDeleteForm = false">
+                    No
+              </material-button>
+              <material-button autoFocus clear-size (trigger)="eliminarUsuario()">
+                  Si
+              </material-button>
+            </div>
           </material-dialog>
     </modal>
 
@@ -58,11 +99,11 @@
                 <td data-column="CORREO" >{{ usuario.correo }}</td>
                 <td data-column="FECHANACIMIENTO" >{{ usuario.fechaNacimiento }}</td>
                 <td data-column="OPCIONES" >
-                    <material-button (trigger)="abrirEditarUsuario()">
+                    <material-button (trigger)="abrirEditarUsuario(usuario)">
                         <material-icon icon="edit"></material-icon>
                     </material-button>
 
-                    <material-button (trigger)="abrirEliminarUsuario()">
+                    <material-button (trigger)="abrirEliminarUsuario(usuario)">
                         <material-icon icon="delete"></material-icon>
                     </material-button>
                 </td>

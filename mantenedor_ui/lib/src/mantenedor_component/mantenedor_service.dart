@@ -40,6 +40,24 @@ class MantenedorService {
     }
   }
 
+  Future<bool> actualizar(UsuarioModel usuario) async {
+    try {
+      final response = await _http.put('${_url}/editar', headers: _headers, body: JSON.encode(usuario));
+      return true;//_extractData(response);
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<bool> eliminar(UsuarioModel usuario) async {
+    try {//debo enviar el id por la url
+      final response = await _http.delete('${_url}/eliminar/${usuario.usuarioId}', headers: _headers);
+      return true;//_extractData(response);
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
   dynamic _extractData(Response resp) => JSON.decode(resp.body);
 
   Exception _handleError(dynamic e) {
