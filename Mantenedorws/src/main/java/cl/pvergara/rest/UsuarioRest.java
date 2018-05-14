@@ -57,10 +57,10 @@ public class UsuarioRest {
 	@POST
 	@Path("/crear")
 	@Consumes("application/json")
+	@Produces("text/plain")
 	public Response crear(UsuarioDto usuario) {
 
 		UsuarioDao dao = new UsuarioDao();
-		
 		return Response.status(201).entity(dao.crear(usuario)).build();
 		
 	}
@@ -68,6 +68,7 @@ public class UsuarioRest {
 	@PUT
 	@Path("/editar")
 	@Consumes("application/json")
+	@Produces("text/plain")
 	public Response editar(UsuarioDto usuario) {
 
 		UsuarioDao dao = new UsuarioDao();
@@ -78,6 +79,7 @@ public class UsuarioRest {
 	@DELETE
 	@Path("/eliminar")
 	@Consumes("application/json")
+	@Produces("text/plain")
 	public Response eliminar(UsuarioDto usuario) {
 
 		UsuarioDao dao = new UsuarioDao();
