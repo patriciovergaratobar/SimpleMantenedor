@@ -13,6 +13,8 @@ import 'package:angular_components/material_button/material_button.dart';
 import 'package:angular_components/material_dialog/material_dialog.dart';
 import 'package:angular_components/material_tooltip/material_tooltip.dart';
 
+import 'package:angular_components/material_yes_no_buttons/material_yes_no_buttons.dart';
+
 import 'package:angular_components/material_input/material_input.dart';
 
 import 'usuario_model.dart';
@@ -20,119 +22,123 @@ import 'mantenedor_service.dart';
 
 import '../form_component/crear_usuario/crear_usuario_form_component.dart';
 
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart'
+as http;
 
 @Component(
     selector: 'mantenedor-component',
     styleUrls: const ['mantenedor_component.css'],
     templateUrl: 'mantenedor_component.html',
     directives: const [MaterialButtonComponent,
-                       MaterialIconComponent,
-                       CORE_DIRECTIVES,
-                       MaterialDialogComponent,
-                       AutoDismissDirective,
-                       AutoFocusDirective,
-                       ModalComponent,
-                       materialInputDirectives,
-                       CrearUsuarioFormComponent],
-    providers: const [MantenedorService],)
-class MantenedorComponent implements OnInit  {
+        MaterialIconComponent,
+        CORE_DIRECTIVES,
+        MaterialDialogComponent,
+        AutoDismissDirective,
+        AutoFocusDirective,
+        ModalComponent,
+        materialInputDirectives,
+        MaterialSaveCancelButtonsDirective,
+        MaterialYesNoButtonsComponent,
+        CrearUsuarioFormComponent
+    ],
+    providers: const [MantenedorService], )
+class MantenedorComponent implements OnInit {
 
-  final MantenedorService servicios;
-  //final CrearUsuarioFormComponent crearUsuarioFormComponent;
-  //Crear usuario
-  String rutNuevo;
-  String nombreNuevo;
-  String correoNuevo;
-  String claveNuevo;
-  String fechaNuevo;
+    final MantenedorService servicios;
 
-  //Gestionar Usuario
-  UsuarioModel gestionUsuarioModel = new UsuarioModel(0, '', '', '', '', '');
+    //Crear usuario
+    String rutNuevo;
+    String nombreNuevo;
+    String correoNuevo;
+    String claveNuevo;
+    String fechaNuevo;
 
-  bool showCrearForm = false;
-  bool showEditForm = false;
-  bool showDeleteForm = false;
+    //Gestionar Usuario
+    UsuarioModel gestionUsuarioModel = new UsuarioModel(0, '', '', '', '', '');
 
-  List<UsuarioModel> lista;
+    bool showCrearForm = false;
+    bool showEditForm = false;
+    bool showDeleteForm = false;
 
-  MantenedorComponent(this.servicios);
+    List < UsuarioModel > lista;
 
-  ngOnInit() => _getList();
+    MantenedorComponent(this.servicios);
 
-  _getList() async {
-    try {
+    ngOnInit() => _getList();
 
-      lista = await servicios.getList();
-      print(lista); //console.log
-    } catch (e) {
+    _getList() async {
+        try {
 
-      print(e.toString()); //console.log
+            lista = await servicios.getList();
+            print(lista); //console.log
+        } catch (e) {
+
+            print(e.toString()); //console.log
+        }
     }
-  }
 
-  abrirCrearUsuario() {
+    abrirCrearUsuario() {
 
-    rutNuevo = '';
-    nombreNuevo = '';
-    correoNuevo = '';
-    claveNuevo = '';
-    fechaNuevo = '';
+        rutNuevo = '';
+        nombreNuevo = '';
+        correoNuevo = '';
+        claveNuevo = '';
+        fechaNuevo = '';
 
-    showCrearForm=true;
-  }
+        showCrearForm = true;
+    }
 
-  crearUsuario() async {
-  
-    UsuarioModel usuarioNuevo = new UsuarioModel(0, rutNuevo, nombreNuevo, correoNuevo, claveNuevo, fechaNuevo);
-    print(usuarioNuevo);
-    bool resultado = await servicios.crear(usuarioNuevo);
+    crearUsuario() async {
 
-    print(resultado);
-    showCrearForm=false;
+        UsuarioModel usuarioNuevo = new UsuarioModel(0, rutNuevo, nombreNuevo, correoNuevo, claveNuevo, fechaNuevo);
+        print(usuarioNuevo);
+        bool resultado = await servicios.crear(usuarioNuevo);
 
-    _getList();
-  }
+        print(resultado);
+        showCrearForm = false;
 
-  abrirEditarUsuario(UsuarioModel usuario) {
+        _getList();
+    }
 
-    print('Editar usuario');
-    print(usuario);
-    gestionUsuarioModel = usuario;
-    showEditForm = true;
+    abrirEditarUsuario(UsuarioModel usuario) {
 
-  }
+        print('Editar usuario');
+        print(usuario);
+        gestionUsuarioModel = usuario;
+        showEditForm = true;
 
-  editarUsuario() async {
-  
-    
-    print(gestionUsuarioModel);
-    bool resultado = await servicios.actualizar(gestionUsuarioModel);
+    }
 
-    print(resultado);
-    showEditForm=false;
+    editarUsuario() async {
 
-    _getList();
-  }
 
-  abrirEliminarUsuario(UsuarioModel usuario) {
+        print(gestionUsuarioModel);
+        bool resultado = await servicios.actualizar(gestionUsuarioModel);
 
-    print('Eliminar usuario');
-    print(usuario);
-    gestionUsuarioModel = usuario;
-    showDeleteForm = true;
+        print(resultado);
+        showEditForm = false;
 
-  }
+        _getList();
+    }
 
-  eliminarUsuario() async {
+    abrirEliminarUsuario(UsuarioModel usuario) {
 
-    print(gestionUsuarioModel);
-    bool resultado = await servicios.eliminar(gestionUsuarioModel);
+        print('Eliminar usuario');
+        print(usuario);
+        gestionUsuarioModel = usuario;
+        showDeleteForm = true;
 
-    print(resultado);
-    showDeleteForm = false;
+    }
 
-    _getList();
-  }
+    eliminarUsuario() async {
+
+        print(gestionUsuarioModel);
+        bool resultado = await servicios.eliminar(gestionUsuarioModel);
+
+        print(resultado);
+        showDeleteForm = false;
+
+        _getList();
+    }
 
 }

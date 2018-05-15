@@ -1,12 +1,19 @@
+/**
+ * Modelo del usuario.
+ */
 class UsuarioModel {
 
   int usuarioId;
-  String rut;
-  String nombre;
-  String correo;
-  String clave;
-  String fechaNacimiento;
 
+  String rut;
+
+  String nombre;
+
+  String correo;
+
+  String clave;
+
+  String fechaNacimiento;
 
   UsuarioModel(this.usuarioId, this.rut, this.nombre, this.correo, this.clave, this.fechaNacimiento);
 

@@ -16,7 +16,7 @@ Estilos de los modales
 Estilo de la tabla
 */
 table { 
-    width: 750px; 
+    width: 70em;
     border-collapse: collapse; 
     margin:50px auto;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .29);
@@ -27,7 +27,7 @@ tr:nth-of-type(odd) {
     }
 
 th { 
-    background-color: #03a9f4;
+    background-color: #292323;
     color: white; 
     font-weight: bold;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .29);
