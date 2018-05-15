@@ -14,7 +14,8 @@ import cl.pvergara.dto.UsuarioDto;
 
 /**
  * Metodo que permite acceder a los datos de la coleccion de usuarios.
- * @author TeiGps
+ * 
+ * @author pvergara
  *
  */
 public class UsuarioDao {
