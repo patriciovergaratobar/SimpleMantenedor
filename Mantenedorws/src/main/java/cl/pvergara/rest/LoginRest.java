@@ -12,6 +12,17 @@ import javax.ws.rs.core.Response;
 import cl.pvergara.dao.UsuarioDao;
 import cl.pvergara.dto.UsuarioDto;
 
+/*
+ * 
+ *  
+ *  ESTA CLASE ES SOLO UN EJEMPLO, PERO EN EL FUTURO LA DEJARE FUNCIONAL
+ *  
+ *  
+ *  
+ *  
+ *  
+ *  */
+
 //http://localhost:8080/Mantenedorws/rest/login/hello%20world
 @Path("/login")
 public class LoginRest {
